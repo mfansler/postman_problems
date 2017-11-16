@@ -153,3 +153,14 @@ def GRAPH_3():
 def GRAPH_3_EDGELIST_CSV(GRAPH_3):
     edgelist = nx.to_pandas_edgelist(GRAPH_3, source='_node1', target='_node2')
     return create_mock_csv_from_dataframe(edgelist)
+
+
+@pytest.fixture(scope='function', autouse=True)
+def GRAPH_4_EDGELIST_CSV(GRAPH_1_EDGELIST_DF):
+    return create_mock_csv_from_dataframe(GRAPH_1_EDGELIST_DF)
+
+
+@pytest.fixture(scope='session', autouse=True)
+def GRAPH_5_EDGELIST_CSV(GRAPH_2):
+    edgelist = nx.to_pandas_edgelist(GRAPH_2, source='_node1', target='_node2')
+    return create_mock_csv_from_dataframe(edgelist)
